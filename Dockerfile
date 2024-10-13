@@ -9,5 +9,6 @@ WORKDIR /waBotPython
 # Instal dependensi dari requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+CMD ["which" "python"]
 # Tentukan perintah untuk menjalankan aplikasi
 CMD ["python", "app.py"]  # Ganti app.py dengan nama file aplikasi utama
