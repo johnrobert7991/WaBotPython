@@ -1,13 +1,17 @@
 # Ganti dengan versi Python yang sesuai
-FROM python:3.11  
-
-RUN which python
-# RUN git clone https://github.com/johnrobert7991/WaBotPython.git /waBotPython
+FROM python:3.9 
 
 # Set direktori kerja
-# WORKDIR /waBotPython
+WORKDIR /app
+
+# Salin requirements.txt ke dalam image
+COPY requirements.txt .
 
 # Instal dependensi dari requirements.txt
-# RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# CMD ["sh", "-c", "python", "app.py"]
+# Salin sisa kode aplikasi ke dalam image
+COPY . .
+
+# Tentukan perintah untuk menjalankan aplikasi
+CMD ["python", "app.py"]  # Ganti app.py dengan nama file aplikasi utama
