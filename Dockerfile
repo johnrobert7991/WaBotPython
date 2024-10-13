@@ -1,7 +1,7 @@
 # Ganti dengan versi Python yang sesuai
 FROM python:3.11  
 
-# CMD which python
+RUN which python
 # RUN git clone https://github.com/johnrobert7991/WaBotPython.git /waBotPython
 
 # Set direktori kerja
