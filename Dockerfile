@@ -1,7 +1,9 @@
 # Ganti dengan versi Python yang sesuai
 FROM python:3.11  
 
-CMD which python
+CMD ["sh", "-c", "which python"]
+
+# CMD which python
 # RUN git clone https://github.com/johnrobert7991/WaBotPython.git /waBotPython
 
 # # Set direktori kerja
