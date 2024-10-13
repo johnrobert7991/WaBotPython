@@ -1,3 +1,5 @@
+print("haylo")
+
 import logging
 import os
 import signal
