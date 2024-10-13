@@ -10,4 +10,4 @@ WORKDIR /waBotPython
 # Instal dependensi dari requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["sh", "-c", "python", "app.py"]
+# CMD ["sh", "-c", "python", "app.py"]
