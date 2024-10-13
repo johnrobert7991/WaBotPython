@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # CMD ["which" "python"]
 # Tentukan perintah untuk menjalankan aplikasi
+CMD ["sh", "-c", "which python"]
 CMD ["sh", "-c", "python", "app.py"]
 # CMD ["/usr/local/bin/python", "app.py"]  
 # Ganti app.py dengan nama file aplikasi utama
