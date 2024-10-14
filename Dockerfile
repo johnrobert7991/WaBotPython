@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 3000
 
 # CMD ["ls"]
-CMD ["python3", "app.py"]
+CMD ["gunicorn", "--bind" , ":8080", "--workers", "2", "app:app"]
+# CMD ["python3", "app.py"]
