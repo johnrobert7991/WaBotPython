@@ -13,5 +13,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Menginformasikan Docker bahwa aplikasi mendengarkan pada port 80
 EXPOSE 3000
 
-CMD ["ls"]
-# CMD ["python3", "app.py"]
+# CMD ["ls"]
+CMD ["python3", "app.py"]
