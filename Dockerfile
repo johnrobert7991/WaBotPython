@@ -13,6 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Menginformasikan Docker bahwa aplikasi mendengarkan pada port 80
 EXPOSE 3000
 
+RUN chmod +x entrypoint.sh
 # CMD ["ls"]
-CMD ["gunicorn", "--bind" , ":3000", "--workers", "2", "app:main"]
+# CMD ["gunicorn", "--bind" , ":3000", "--workers", "2", "app:main"]
 # CMD ["python3", "app.py"]
+CMD ["./entrypoint.sh"]
