@@ -63,6 +63,7 @@ def handler(client: NewClient, message: MessageEv):
     log.critical(message)
     log.critical("==============")
     log.critical(message.Message)
+    log.critical("\n")
     match text:
         case "ping":
             client.reply_message("pong", message)
