@@ -7,7 +7,7 @@ RUN git clone https://github.com/johnrobert7991/WaBotPython.git /waBotPython
 # Set direktori kerja
 WORKDIR /waBotPython
 
-# Instal dependensi dari requirements.txt
+# Instal dependensi dari requirements.txts
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python3", "app.py"]
