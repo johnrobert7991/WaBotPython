@@ -59,7 +59,7 @@ def on_message(client: NewClient, message: MessageEv):
 def handler(client: NewClient, message: MessageEv):
     text = message.Message.conversation or message.Message.extendedTextMessage.text
     chat = message.Info.MessageSource.Chat
-    print(message.Message)
+    log.critical(message.Message)
     match text:
         case "ping":
             client.reply_message("pong", message)
