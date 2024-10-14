@@ -10,4 +10,7 @@ WORKDIR /waBotPython
 # Instal dependensi dari requirements.txts
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Menginformasikan Docker bahwa aplikasi mendengarkan pada port 80
+EXPOSE 80
+
 CMD ["python3", "app.py"]
