@@ -69,10 +69,12 @@ def handler(client: NewClient, message: MessageEv):
 def PairStatusMessage(_: NewClient, message: PairStatusEv):
     log.info(f"logged as {message.ID.User}")     
 
+def main():
+    code = client.PairPhone("6285155304081", show_push_notification=False)  # Jalankan client dalam loop selamanya
 
 if __name__ == "__main__": 
-    # print("Hello")
-    code = client.PairPhone("6285155304081", show_push_notification=False)
+    print("Hello")
+    main()
     # print(code)
     
 
