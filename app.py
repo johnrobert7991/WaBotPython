@@ -71,8 +71,8 @@ def PairStatusMessage(_: NewClient, message: PairStatusEv):
 
 
 if __name__ == "__main__": 
-    print("Hello")
-    # code = client.PairPhone("6285155304081", show_push_notification=False)
+    # print("Hello")
+    code = client.PairPhone("6285155304081", show_push_notification=False)
     # print(code)
     
 
