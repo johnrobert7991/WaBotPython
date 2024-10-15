@@ -75,10 +75,13 @@ def handler(client: NewClient, message: MessageEv):
         
     elif text.startswith("/ask") or "628816506710" in str(message): 
         prompt = ""
+        resp = ""
+        
         if text.startswith("/ask"): 
             prompt = text.lstrip("/ask").strip()
         elif "628816506710" in str(message): 
-            prompt = "Zayra, " + text
+            prompt = text
+            resp = "Zayra, "
 
         if not prompt: 
             client.reply_message(
@@ -90,7 +93,7 @@ def handler(client: NewClient, message: MessageEv):
             )
             return
         
-        resp = client_chat.chat(prompt)
+        resp += client_chat.chat(prompt)
         client.reply_message(resp, message)
 
 @client.event(PairStatusEv)
