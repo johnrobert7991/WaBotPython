@@ -133,7 +133,7 @@ class Corcel:
                                 resp += text
 
                     role = Message.Role.ASSISTANT
-                    history.append(dict(role=role, content=text))
+                    history.append(dict(role=role, content=resp))
                     return resp
             except Exception as e: 
                 print("Error: ",e)
@@ -155,9 +155,10 @@ D. Black Mamba"""
     loop = False
     history = []
     
-    resp = provider.chat("1+1 berapa jangan dijawab dulu", model=model)
-    resp = provider.chat("sekarang boleh kamu jawab", model=model)
-    print(resp)
+    resp = provider.chat("1+1 berapa jangan dijawab dulu", model=model, history=history)
+    resp = provider.chat("sekarang boleh kamu jawab", model=model, history=history)
+    resp = provider.chat("halo apakabar?", model=model, history=history)
+    print(history)
     # while True: 
     #     result = provider.chat(prompt, stream=stream, model=model, history=history)
     #     if stream: 
