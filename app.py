@@ -82,6 +82,7 @@ def handler(client: NewClient, message: MessageEv):
         elif "628816506710" in str(message): 
             prompt = text + "\n\nJawab sesingkat singkat mungkin jangan melebihi 15-20 kata!"
             resp = "Zayra, "
+            return
 
         if not prompt: 
             client.reply_message(
