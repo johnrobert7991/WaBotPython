@@ -112,35 +112,28 @@ class Corcel:
         headers = Headers.get()
         payload = Payload(prompt, model=model, stream=stream, messages=history, **kwargs)
 
-        while True: 
-            try: 
-                response = requests.post(Url.CHAT, json=payload.json(), headers=headers)
+        response = requests.post(Url.CHAT, json=payload.json(), headers=headers)
 
-                if response.status_code == 200: 
-                    resp = ""
-                    for chunk in response.iter_lines(): 
-                        if chunk: 
-                            chunk = chunk.decode("utf-8") or ""
-                            chunk = chunk.lstrip("data:").strip()
+        if response.status_code == 200: 
+            resp = ""
+            for chunk in response.iter_lines(): 
+                if chunk: 
+                    chunk = chunk.decode("utf-8") or ""
+                    chunk = chunk.lstrip("data:").strip()
 
-                            if chunk.startswith("[DONE]"): 
-                                break
-                            
-                            completion = json.loads(chunk)
-                            choices = completion["choices"]
-                            if choices: 
-                                text = choices[0]["delta"]["content"]
-                                resp += text
+                    if chunk.startswith("[DONE]"): 
+                        break
+                    
+                    completion = json.loads(chunk)
+                    choices = completion["choices"]
+                    if choices: 
+                        text = choices[0]["delta"]["content"]
+                        resp += text
 
-                    role = Message.Role.ASSISTANT
-                    history.append(dict(role=role, content=resp))
-                    return resp
-            except Exception as e: 
-                print("Error: ",e)
-                return
+            role = Message.Role.ASSISTANT
+            history.append(dict(role=role, content=resp))
+            return resp
             
-            time.sleep(2)
-
 if __name__ == "__main__": 
     provider = Corcel()
     prompt = """What animal is the most poisonous in the world?
