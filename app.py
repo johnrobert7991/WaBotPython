@@ -80,7 +80,7 @@ def handler(client: NewClient, message: MessageEv):
         if text.startswith("/ask"): 
             prompt = text.lstrip("/ask").strip()
         elif "628816506710" in str(message): 
-            prompt = text
+            prompt = text + "\n\nJawab sesingkat singkat mungkin jangan melebihi 15-20 kata!"
             resp = "Zayra, "
 
         if not prompt: 
