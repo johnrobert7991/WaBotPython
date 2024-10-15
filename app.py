@@ -2,7 +2,10 @@ import logging
 import os
 import signal
 import sys
+
+from corcel import Corcel
 from datetime import timedelta
+
 from neonize.client import NewClient
 from neonize.events import (
     ConnectedEv,
@@ -35,6 +38,8 @@ log.setLevel(logging.CRITICAL)
 signal.signal(signal.SIGINT, interrupted)
 
 client = NewClient("db.sqlite3")
+client_chat = Corcel()
+client_chat.history = []
 
 @client.event(ConnectedEv)
 def on_connected(_: NewClient, __: ConnectedEv):
@@ -59,14 +64,29 @@ def on_message(client: NewClient, message: MessageEv):
 def handler(client: NewClient, message: MessageEv):
     text = message.Message.conversation or message.Message.extendedTextMessage.text
     chat = message.Info.MessageSource.Chat
-    log.critical("Message From: ")
-    log.critical(message)
-    log.critical("==============")
-    log.critical(message.Message)
-    log.critical("\n")
-    match text:
-        case "ping":
-            client.reply_message("pong", message)
+    log.critical(f"Incoming Message: \n{message.Message}")
+    # log.critical(message.Message)
+    # log.critical("==============")
+    # log.critical(message.Message)
+    # log.critical("\n")
+    
+    if text.startswith("ping"): 
+        client.reply_message("pong", message)
+
+    elif text.startswith("/ask"): 
+        prompt = text.lstrip("/ask").strip()
+        if not prompt: 
+            client.reply_message(
+                (
+                    "usage /ask <prompt>\n"
+                    "example: /ask apa itu kucing?"
+                ),
+                message
+            )
+            return
+        
+        resp = client_chat.chat(prompt, history=client_chat.history)
+        client.reply_message(resp, message)
 
 
 @client.event(PairStatusEv)
