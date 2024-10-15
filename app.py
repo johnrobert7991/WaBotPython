@@ -93,7 +93,7 @@ def handler(client: NewClient, message: MessageEv):
             )
             return
         
-        resp += client_chat.chat(prompt)
+        resp += client_chat.chat(prompt, history=client_chat.history)
         client.reply_message(resp, message)
 
 @client.event(PairStatusEv)
