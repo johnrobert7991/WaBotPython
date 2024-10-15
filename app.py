@@ -72,9 +72,14 @@ def handler(client: NewClient, message: MessageEv):
     
     if text.startswith("ping"): 
         client.reply_message("pong", message)
+        
+    elif text.startswith("/ask") or "628816506710" in str(message): 
+        prompt = ""
+        if text.startswith("/ask"): 
+            prompt = text.lstrip("/ask").strip()
+        elif "628816506710" in str(message): 
+            prompt = "Zayra, " + text
 
-    elif text.startswith("/ask"): 
-        prompt = text.lstrip("/ask").strip()
         if not prompt: 
             client.reply_message(
                 (
@@ -85,9 +90,8 @@ def handler(client: NewClient, message: MessageEv):
             )
             return
         
-        resp = client_chat.chat(prompt, history=client_chat.history)
+        resp = client_chat.chat(prompt)
         client.reply_message(resp, message)
-
 
 @client.event(PairStatusEv)
 def PairStatusMessage(_: NewClient, message: PairStatusEv):
